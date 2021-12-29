@@ -4,7 +4,6 @@ import javax.validation.constraints.NotBlank;
 
 public class PlayerA {
 
-
     @NotBlank
     private String battleTag;
 

@@ -23,7 +23,7 @@ public class AuthorizationController {
 
 
     @PostMapping("")
-    public void authorize(@RequestBody PlayerA user){
+    public String authorize(@RequestBody PlayerA user){
 
 
         List<Player> players=playerRepository.findAll().stream()
@@ -61,15 +61,11 @@ public class AuthorizationController {
 
                 throw new UserNotFoundException("already registered at "+user.getAuthorizationType());
 
-            }else{
-
-                //return ;
-
             }
 
-
         }
-        //return user;
+
+        return user.getBattleTag();
 
     }
 

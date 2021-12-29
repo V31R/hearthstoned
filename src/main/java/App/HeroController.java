@@ -26,7 +26,7 @@ public class HeroController {
 
     }
 
-    @GetMapping("/player")
+    @PostMapping("/player")
     public List<GetsHeroesStat> getListHeroesAtPlayers(@RequestBody BattleTag tag){
 
         return getsHeroesStatRepository.findAll().stream().filter((h)->(h.getBattleTag()!=null && h.getBattleTag().equals(tag.getTagValue()))).toList();

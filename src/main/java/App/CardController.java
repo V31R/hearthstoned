@@ -28,10 +28,11 @@ public class CardController {
 
     }
 
-    @GetMapping("/player")
+    @PostMapping("/player")
     public List<GetsCardsStat> getListHeroesAtPlayers(@RequestBody BattleTag tag){
 
-        return getsCardsStatRepository.findAll().stream().filter((c)->(c.getBattleTag()!=null && c.getBattleTag().equals(tag.getTagValue()))).toList();
+        return getsCardsStatRepository.findAll().stream().filter((c)->(c.getBattleTag()!=null
+                && c.getBattleTag().equals(tag.getTagValue()))).toList();
 
     }
 
