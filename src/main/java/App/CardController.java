@@ -2,10 +2,9 @@ package App;
 
 import App.Data.GetsCardsStat;
 import App.Data.GetsCardsStatRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import App.RequestsBody.BattleTag;
+import App.RequestsBody.PlayerA;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,12 +28,10 @@ public class CardController {
 
     }
 
-    @GetMapping("/{name}/{tag}")
-    public List<GetsCardsStat> getListHeroesAtPlayers(@PathVariable("name") String name,@PathVariable("tag") String tag){
+    @GetMapping("/player")
+    public List<GetsCardsStat> getListHeroesAtPlayers(@RequestBody BattleTag tag){
 
-        String battleTag= new String(name+"#"+tag);
-
-        return getsCardsStatRepository.findAll().stream().filter((c)->(c.getBattleTag()!=null && c.getBattleTag().equals(battleTag))).toList();
+        return getsCardsStatRepository.findAll().stream().filter((c)->(c.getBattleTag()!=null && c.getBattleTag().equals(tag.getTagValue()))).toList();
 
     }
 

@@ -2,10 +2,8 @@ package App;
 
 import App.Data.GetsHeroesStat;
 import App.Data.GetsHeroesStatRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import App.RequestsBody.BattleTag;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,10 +26,10 @@ public class HeroController {
 
     }
 
-    @GetMapping("/{BattleTag}")
-    public List<GetsHeroesStat> getListHeroesAtPlayers(@PathVariable("BattleTag") String battleTag){
+    @GetMapping("/player")
+    public List<GetsHeroesStat> getListHeroesAtPlayers(@RequestBody BattleTag tag){
 
-        return getsHeroesStatRepository.findAll().stream().filter((h)->(h.getBattleTag()!=null && h.getBattleTag().equals(battleTag))).toList();
+        return getsHeroesStatRepository.findAll().stream().filter((h)->(h.getBattleTag()!=null && h.getBattleTag().equals(tag.getTagValue()))).toList();
 
     }
 

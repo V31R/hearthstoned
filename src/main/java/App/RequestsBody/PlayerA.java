@@ -1,4 +1,4 @@
-package App.Data;
+package App.RequestsBody;
 
 import javax.validation.constraints.NotBlank;
 
